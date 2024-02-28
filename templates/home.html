@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,8 +21,8 @@
 	
 	<!-- JAVASCRIPT -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="assets/js/modernizr.js"></script>
-	<script src="assets/js/bootstrap.js"></script>
+	<script src="{%static 'js/scripts.js' %}"></script>
+	<script src="{%static 'js/scripts.js' %}"></script>
 
 	<style>
 		body, .main-section p, .mce-content-body p{
@@ -42,7 +43,7 @@
 							<div class="logo">
 								<figure>
 									<a href="index.html" class="light-logo">
-										<img src="assets/extra-images/main-logo.png" alt="FoodBakery">
+										<img src="{%static 'logo\foodOnlineLogo.png' %}" alt="FoodBakery">
 									</a>
 								</figure>
 							</div>
@@ -392,10 +393,10 @@
 		</footer>
 		<!-- Footer End -->
 	</div>
-	
+
 	<!-- Modal Popup End -->
-	<script src="assets/js/scripts.js"></script>
-	<script src="assets/js/functions.js"></script>
+	<script src="{%static 'js/scripts.js' %}"></script>
+	<script src="{%static 'js/scripts.js' %}"></script>
 </body>
 
 </html>

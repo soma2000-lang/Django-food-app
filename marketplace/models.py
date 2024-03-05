@@ -1,18 +1,26 @@
 from django.db import models
 
-# Create your models here.
-from .models import Category, FoodItem
+from accounts.models import User
+from menu.models import FoodItem
 
 
-class CategoryAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('category_name',)}
-    list_display = ('category_name', 'vendor', 'updated_at')
-    search_fields = ('category_name', 'vendor__vendor_name')
-class FoodItemAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('food_title',)}
-    list_display = ('food_title', 'category', 'vendor', 'price', 'is_available', 'updated_at')
-    search_fields = ('food_title', 'category__category_name', 'vendor__vendor_name', 'price')
-    list_filter = ('is_available',)
 
-admin.site.register(Category, CategoryAdmin)
-admin.site.register(FoodItem, FoodItemAdmin)
+class Cart(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    fooditem = models.ForeignKey(FoodItem, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return self.user
+class Tax(models.Model):
+    tax_type = models.CharField(max_length=20, unique=True)
+    tax_percentage = models.DecimalField(decimal_places=2, max_digits=4, verbose_name='Tax Percentage (%)')
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name_plural = 'tax'
+
+    def __str__(self):
+        return self.tax_type

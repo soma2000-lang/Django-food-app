@@ -1,7 +1,7 @@
 from django.urls import path, include
 from . import views
 from accounts import views as AccountViews
-
+#Returns an element for inclusion in urlpatterns. For example:
 
 urlpatterns = [
     path('', AccountViews.vendorDashboard, name='vendor'),
